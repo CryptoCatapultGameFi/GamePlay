@@ -5,19 +5,31 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Menu.unity
     guid: a9c354ec2bd53e946ab95af48a5fd6cf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/About.unity
     guid: 6987c51dab31f4d4a9ce9930bb90b921
+  - enabled: 0
+    path: Assets/Web3Unity/Scenes/WebLogin.unity
+    guid: a1b2001e782bb47659732d7e2bcdc35f
+  - enabled: 1
+    path: Assets/Scenes/WebLogin 1.unity
+    guid: 91145ed40b31c56408084a9f0a7b506b
+  - enabled: 0
+    path: Assets/Web3Unity/Scenes/WalletLogin.unity
+    guid: cc28e1075e9584f1698219d041278648
   - enabled: 1
     path: Assets/Scenes/Level01.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Level02.unity
     guid: e9f909c842abe2d43a4bd64c83fee7cf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EndMenu.unity
     guid: 8bdb3b68f7b948d448ab0aa5b3860ba6
+  - enabled: 1
+    path: Assets/Scenes/End Game.unity
+    guid: c47a4ca08916f074a9f7189ff8a1459b
   m_configObjects: {}
