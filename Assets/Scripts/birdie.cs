@@ -26,12 +26,12 @@ public class birdie : MonoBehaviour
         GetComponent<LineRenderer>().SetPosition(1, startingPos);
 
 
-        if (transform.position.x <= -50
-            || transform.position.y <= -16
-            || transform.position.x >= 27
-            || transform.position.y >= 19
+        if (transform.position.x <= -20
+            || transform.position.y <= -15
+            || transform.position.x >= 20
+            || transform.position.y >= 15
             || Input.GetKeyDown(KeyCode.R)
-            || TimeSinceLaunch >= 3f
+            || TimeSinceLaunch >= 2f
             )
         {
             string currentLoadScene = SceneManager.GetActiveScene().name;
