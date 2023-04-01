@@ -848,7 +848,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.529933
+  orthographic size: 7.33582
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -872,7 +872,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.65299296, y: -3.6988173, z: -14}
+  m_LocalPosition: {x: -0.58819294, y: -3.6988173, z: -14}
   m_LocalScale: {x: -0.5517493, y: -0.0063280896, z: -0.004017834}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2606,7 +2606,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Catapult
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3079367352803901672, guid: 14bb3668d00abb647ae54ab586eda00f, type: 3}
+    - {fileID: 3079367352803901674, guid: 14bb3668d00abb647ae54ab586eda00f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 14bb3668d00abb647ae54ab586eda00f, type: 3}
 --- !u!1 &1445760420
 GameObject:
@@ -2997,7 +2999,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676372930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.65299296, y: -3.6988173, z: -14}
+  m_LocalPosition: {x: -0.58819294, y: -3.6988173, z: -14}
   m_LocalScale: {x: 2.0340204, y: 2.0340204, z: 2.0340204}
   m_ConstrainProportionsScale: 0
   m_Children:

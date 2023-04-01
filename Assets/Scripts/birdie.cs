@@ -70,6 +70,17 @@ public class birdie : MonoBehaviour
     {
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(newPosition.x, newPosition.y, 0);
+         if (transform.position.x <= -20
+            || transform.position.y <= -15
+            || transform.position.x >= -9
+            || transform.position.y >= 15
+            || Input.GetKeyDown(KeyCode.R)
+            || TimeSinceLaunch >= 2f
+            )
+        {
+            string currentLoadScene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentLoadScene);
+        }
     }
 
 }
