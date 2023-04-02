@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 using Random = UnityEngine.Random;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using UnityEngine.UI;
 
 public class UserNFT
 {
@@ -25,13 +26,18 @@ public class MintToken : MonoBehaviour
     public string urlPost = "https://catapult-backend.herokuapp.com/user/finish/";
     private string account = WebLogin.Account;
     public string catapultPower;
+    public string rewardText;
+    public static string rewardTextShow;
     public string bulletPower;
+    private bool isComplete = false;
+    private bool isMinting = false; 
+    private int reward;
 
 
     void Start() {
         
         StartCoroutine(GetText());
-        
+        GetText();
     }
 
     IEnumerator GetText() {
@@ -54,6 +60,13 @@ public class MintToken : MonoBehaviour
  
             // Or retrieve results as binary data
             byte[] results = www.downloadHandler.data;
+            int randomNumber = Random.Range(6, 7);
+            reward = (Int16.Parse(bulletPower) + Int16.Parse(catapultPower)) * randomNumber;
+            rewardText = reward.ToString();
+            Debug.Log("Here");
+
+            rewardTextShow = rewardText;
+            Debug.Log(rewardTextShow);
         }
     }
 
@@ -80,10 +93,6 @@ public class MintToken : MonoBehaviour
         Debug.Log("This is contract part now");
         await GetText();
 
-        // int testValue = 7;
-        int randomNumber = Random.Range(6, 8);
-        int reward = (int.Parse(bulletPower) + int.Parse(catapultPower)) * randomNumber;
-        string rewardText = reward.ToString();
         string openBraclet = "[";
         string closeBraclet = "]";
         // smart contract method to call
@@ -101,18 +110,26 @@ public class MintToken : MonoBehaviour
         // gas price OPTIONAL
         string gasPrice = "";
         // connects to user's browser wallet (metamask) to update contract state
+        if(isMinting) return ;
 
-    
+        if(!isMinting) {
+            isMinting = true;
 
-        try {
-            string response = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
-                        
-        } catch (Exception e) {
-            Debug.LogException(e, this);
+            try {
+                
+                string response = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
+                isComplete = true;
+                            
+            } catch (Exception e) {
+                Debug.LogException(e, this);
+            }
+            if(isComplete) {
+                await PostRequest(urlPost);
+                Close();
+            }
         }
-        await PostRequest(urlPost);
-        Close();
-       
+        
+        
     }
 
 }

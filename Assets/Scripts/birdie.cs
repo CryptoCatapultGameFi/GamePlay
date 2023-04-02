@@ -26,7 +26,7 @@ public class birdie : MonoBehaviour
         GetComponent<LineRenderer>().SetPosition(1, startingPos);
 
 
-        if (transform.position.x <= -20
+        if (transform.position.x <= -23
             || transform.position.y <= -15
             || transform.position.x >= 20
             || transform.position.y >= 15
@@ -70,7 +70,7 @@ public class birdie : MonoBehaviour
     {
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(newPosition.x, newPosition.y, 0);
-         if (transform.position.x <= -20
+         if (transform.position.x <= -23
             || transform.position.y <= -15
             || transform.position.x >= -9
             || transform.position.y >= 15

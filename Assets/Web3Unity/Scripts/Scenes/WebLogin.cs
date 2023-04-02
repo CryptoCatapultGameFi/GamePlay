@@ -26,6 +26,9 @@ public class WebLogin : MonoBehaviour
     private string account;
     public static string Account;
 
+    public bool isOnConnected = false;
+
+
     public async void OnLogin()
     {
         Web3Connect();
@@ -34,28 +37,41 @@ public class WebLogin : MonoBehaviour
 
     async private Task OnConnected()
     {
-        account = ConnectAccount();
-        while (account == "")
-        {
-            await Task.Delay(1000);
+        if(!isOnConnected) {
+            
             account = ConnectAccount();
+            while (account == "")
+            {
+                await Task.Delay(1000);
+                account = ConnectAccount();
+            }
+            // save account for next scene
+            PlayerPrefs.SetString("Account", account);
+            // reset login message
+            SetConnectAccount("");
+        
+            // load next scene    
+            bool status = await FetchData(account);
+
+            Account = account;
+            Debug.Log(status);
+            if(!isOnConnected) {
+                if (status)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+                        isOnConnected = true;
+                }
+                else
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    isOnConnected = true;
+                }
+            } 
+            
+        } else {
+            Debug.Log("Else");
         }
-        // save account for next scene
-        PlayerPrefs.SetString("Account", account);
-        // reset login message
-        SetConnectAccount("");
-        // load next scene
-        bool status = await FetchData(account);
-        Account = account;
-        Debug.Log(status);
-        if (status)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
-        }
-        else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+        
     }
 
     public void OnSkip()
