@@ -9,7 +9,7 @@ public class getReward : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string reward = MintToken.rewardTextShow;
+        string reward = WebLogin.rewardTextShow;
         myReward.text = reward;
     }
 

@@ -8,12 +8,6 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using UnityEngine.UI;
 
-public class UserNFT
-{
-    public string catapult_power;
-
-    public string bullet_power;
-}
 
 #if UNITY_WEBGL
 public class MintToken : MonoBehaviour
@@ -22,53 +16,20 @@ public class MintToken : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void Close();
 
-    public string url = "https://catapult-backend.herokuapp.com/user/nft/";
+    
     public string urlPost = "https://catapult-backend.herokuapp.com/user/finish/";
     private string account = WebLogin.Account;
-    public string catapultPower;
+
     public string rewardText;
-    public static string rewardTextShow;
-    public string bulletPower;
+
     private bool isComplete = false;
     private bool isMinting = false; 
-    private int reward;
-
 
     void Start() {
+         
         
-        StartCoroutine(GetText());
-        GetText();
     }
 
-    IEnumerator GetText() {
-        UnityWebRequest www = UnityWebRequest.Get(url+account);
-        yield return www.SendWebRequest();
- 
-        if (www.result != UnityWebRequest.Result.Success) {
-            // Debug.Log(www.error);
-        }
-        else {
-            UserNFT userNFT = new UserNFT();
-            userNFT = JsonUtility.FromJson<UserNFT>(www.downloadHandler.text);
-            catapultPower = userNFT.catapult_power;
-            bulletPower = userNFT.bullet_power;
-            // Show results as text
-            // Debug.Log("Over here");
-            // Debug.Log(www.downloadHandler.text);
-            // Debug.Log("This is my hope " + testFetch);
-            // Debug.Log(www.downloadHandler[0]);
- 
-            // Or retrieve results as binary data
-            byte[] results = www.downloadHandler.data;
-            int randomNumber = Random.Range(6, 7);
-            reward = (Int16.Parse(bulletPower) + Int16.Parse(catapultPower)) * randomNumber;
-            rewardText = reward.ToString();
-            Debug.Log("Here");
-
-            rewardTextShow = rewardText;
-            Debug.Log(rewardTextShow);
-        }
-    }
 
     IEnumerator PostRequest(string url)
     {
@@ -91,7 +52,8 @@ public class MintToken : MonoBehaviour
     async public void OnSendContract()
     {
         Debug.Log("This is contract part now");
-        await GetText();
+        rewardText = WebLogin.rewardTextShow;
+        Debug.Log("Here");
 
         string openBraclet = "[";
         string closeBraclet = "]";
